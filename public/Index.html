@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJS Institute</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://kendo.cdn.telerik.com/themes/9.0.0/default/default-main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Add this in the head or before the closing body tag -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!-- <script src="js/kendo.all.min.js"></script> -->
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full Page Setup */
+        body,
+        html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background Image */
+        body {
+            background-image: url('https://www.sathyabama.ac.in/sites/default/files/inline-images/DJI_0105-New-Low.jpg');
+            /* Replace with your image URL */
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        /* Center the login form */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+        }
+
+        /* Login Form Styles */
+        .login-form {
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Semi-transparent background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+            /* height: 410px; */
+        }
+
+        .login-form h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .input-group input:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #003d7a;
+        }
+
+        .informtext {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            font-size: .9rem;
+            font-weight: 400;
+        }
+
+        .logoimage {
+            width: 250px;
+            height: 150px;
+        }
+
+        .forgotpass {
+            text-decoration: none;
+            color: black;
+        }
+
+        .forgotpass:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5%;
+            padding: 5px;
+            font-size: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .login-form {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-form">
+            <div>
+                <img src="../Image/Institute logo.png" alt="Logo" class="logoimage">
+                <!-- <h2>AJS Insitute</h2> -->
+            </div>
+            <label>Enter Student RegNo and Password to access student panel.</label>
+            <!-- <input type="text" id="username" name="username" required> -->
+            <form action="#" method="post">
+                <div class="input-group">
+                    <select name="orderby" class="orderby">
+                        <option value="menu_order">Staff</option>
+                        <option value="popularity" selected="selected">Student</option>
+                        <option value="rating">Parents</option>
+                    </select>
+                    <input type="hidden" name="paged" value="1">
+                </div>
+                <div class="input-group">
+                    <label for="username">Register Number</label>
+                    <input type="text" id="username" name="username" placeholder="Register Number">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password">
+                </div>
+                <a type="" onclick="myFunction()" class="btn">Login</a>
+            </form>
+            <br>
+            <br>
+
+            <div>
+                <a href="" class="forgotpass" for="forgotpassword">Forgot your password?</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function myFunction() {
+        
+          location.replace("../public/Homepage.html")
+    }
+</script>
+<!-- // debugger
+        // Fetch the attendance data from the server when the button is clicked
+        fetch('http://localhost:3000/attendance')
+            .then(response => {
+                // Check if the response is OK (status 200)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Get the table body element
+                const tableBody = document.getElementById('attendance-table').getElementsByTagName('tbody')[0];
+
+                // Clear any existing rows before adding new data
+                tableBody.innerHTML = '';
+
+                // Iterate over the data and create a new table row for each record
+                data.forEach(item => {
+                    // debugger
+                    const row = document.createElement('tr');
+
+                    // Create a table cell for each column of data
+                    const studentIdCell = document.createElement('td');
+                    studentIdCell.textContent = item.studentid;  // Assuming the data has a student_id field
+                    row.appendChild(studentIdCell);
+
+                    const studentNameCell = document.createElement('td');
+                    studentNameCell.textContent = item.studentname;  // Assuming the data has a student_name field
+                    row.appendChild(studentNameCell);
+
+                    const attendanceStatusCell = document.createElement('td');
+                    attendanceStatusCell.textContent = moment(item.time).format("dddd, MMMM Do YYYY, h:mm:");  // Assuming the data has an attendance_status field
+                    row.appendChild(attendanceStatusCell);
+
+                    // Append the row to the table body
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(err => {
+                console.error('Error fetching data:', err);
+            }); -->
+
+</html>
