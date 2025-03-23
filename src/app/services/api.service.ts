@@ -209,7 +209,7 @@ export class ApiService {
     nonJsonResponse?: any,
     handleError?: boolean
   ): Promise<any> {
-    url = environment.baseUrl + url;
+    // url = environment.baseUrl + url;
 
     return new Promise((resolve, reject) => {
       this.request(type, url, body, applicationType)?.subscribe({
