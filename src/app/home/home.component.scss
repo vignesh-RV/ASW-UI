@@ -1,0 +1,137 @@
+.container {
+    max-width: 1500px !important;
+}
+
+.home-container-section {
+    background-color: #f5f6f8;
+}
+
+.logoimage1 {
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.logoimage2 {
+    /* width: 150px; */
+    height: 40px;
+    border-radius: 50%;
+}
+
+.bgcolor {
+    background-color: rgb(73 185 224);
+}
+
+.form-label {
+    font-weight: 800;
+}
+
+.box-hg {
+    min-height: 90px !important;
+}
+
+.img-thumbnail {
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    height: 10rem;
+    width: 10rem;
+}
+
+.std-det {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    color: #333 !important;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 20px;
+    padding: 1px;
+}
+
+.center-head {
+    background-color: white !important;
+    border-bottom: none !important;
+    font-weight: 600;
+    font-size: x-large;
+}
+
+.soft-primary {
+    background-color: rgba(59, 175, 218, .18);
+}
+
+.soft-info {
+    background-color: rgba(55, 205, 230, .18);
+}
+
+.soft-success {
+    background-color: rgba(26, 188, 156, .18);
+}
+
+.soft-danger {
+    background-color: rgba(241, 85, 108, .18);
+}
+
+.soft-purple {
+    background-color: rgba(101, 89, 204, .18);
+}
+
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px; /* Adjust for tablets */
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px; /* Adjust for larger screens */
+    }
+}
+
+.card-headertrans{
+    background-color: #4285F4; /* Blue */
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.transaction-list {
+    list-style: none;
+    padding: 0;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.transaction-icon {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.clickable{
+    cursor: pointer !important;
+}
+
+.edit_profile_icon{
+    position: absolute;
+    left: 75%;
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+}

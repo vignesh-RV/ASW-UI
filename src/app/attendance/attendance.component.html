@@ -1,0 +1,72 @@
+<div id="attendance-container">
+    <h3>Student Attendance</h3>
+    <div class="range-picker">
+        <label class="range-picker-label">Please select the date range</label>
+        <input class="date-range" type="text"
+  ngxDaterangepickerMd
+  [(ngModel)]="selected"
+  [showCustomRangeLabel]="true"
+  [alwaysShowCalendars]="true"
+  [ranges]="ranges"
+  [linkedCalendars]="true"
+  [isInvalidDate] = "isInvalidDate"
+  placeholder="click here..."/>
+        <button class="btn-primaryy" (click)="getAttendance()">Search</button>
+    </div>
+    
+    <ng-container [ngSwitch]="viewType">
+        <div *ngSwitchCase="'HOURLY'">
+            <div class="attendance-table">
+                <table class="dataTable">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Date</th>
+                            <th>TotalHours</th>
+                            <th>Present</th>
+                            <th>Absent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let attendance of attendanceData.hourly; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{attendance.date}}</td>
+                            <td>{{attendance.totalHours}}</td>            
+                            <td>{{attendance.present}}</td>
+                            <td>{{attendance.absent}}</td>
+                        </tr>
+                        <tr *ngIf="attendanceData.hourly.length == 0">
+                            <td colspan="10">no data to disply..</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'DAILY'">
+            <div class="attendance-table">
+                <table class="dataTable">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Date</th>
+                            <th>Day</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let attendance of attendanceData.daily; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{attendance.date}}</td>
+                            <td>{{attendance.day}}</td>
+                            <td class="{{attendance.isPresent ? 'PRESENT' : 'ABSENT'}}">{{attendance.isPresent ? 'PRESENT' : 'ABSENT'}}</td>
+                        </tr>
+                        <tr *ngIf="attendanceData.hourly.length == 0">
+                            <td colspan="10">no data to disply..</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+</div>

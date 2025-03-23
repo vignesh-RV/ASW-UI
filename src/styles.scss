@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+.btn-primaryy {
+    color: #fff;
+    background-color: #3bafda;
+    border-color: #3bafda;
+    min-width: 100px;
+    font-size: 14px;
+}
+
+.btn-primaryy.focus,.btn-primaryy:focus,.btn-primaryy:hover {
+    color: #fff;
+    background-color: #269dc9;
+    border-color: #2494be
+}
+
+.btn-primaryy.focus,.btn-primaryy:focus {
+    box-shadow: 0 0 0 .15rem rgba(88,187,224,.5)
+}
+
+.btn-primaryy.disabled,.btn-primaryy:disabled {
+    color: #fff;
+    background-color: #3bafda;
+    border-color: #3bafda
+}
+
+.btn-primaryyy:not(:disabled):not(.disabled).active,.btn-primaryy:not(:disabled):not(.disabled):active,.show>.btn-primaryy.dropdown-toggle {
+    color: #fff;
+    background-color: #2494be;
+    border-color: #228cb3
+}
+
+.btn-primaryy:not(:disabled):not(.disabled).active:focus,.btn-primaryy:not(:disabled):not(.disabled):active:focus,.show>.btn-primaryy.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .15rem rgba(88,187,224,.5)
+}
+
+.camel_case{
+    text-transform: capitalize;
+}
+
+/* Error Messages */
+.error{
+    color: red;
+    font-size: 14px;
+    margin-top: 3px;
+}
+input.ng-invalid.ng-touched {
+    border: solid 1px red;
+}

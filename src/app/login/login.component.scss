@@ -1,0 +1,134 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Full Page Setup */
+body,
+html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Background Image */
+.login-container-section {
+    background-image: url('https://www.sathyabama.ac.in/sites/default/files/inline-images/DJI_0105-New-Low.jpg');
+    /* Replace with your image URL */
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+/* Center the login form */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+/* Login Form Styles */
+.login-form {
+    background-color: rgba(255, 255, 255, 0.8);
+    /* Semi-transparent background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+    /* height: 410px; */
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.input-group {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+}
+
+.input-group input:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #003d7a;
+}
+
+.informtext {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.logoimage {
+    width: 250px;
+    height: 70px;
+    margin-bottom: 20px;
+}
+
+.forgotpass {
+    text-decoration: none;
+    color: black;
+}
+
+.forgotpass:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5%;
+    padding: 5px;
+    font-size: 15px;
+}
+
+@media (max-width: 600px) {
+    .login-form {
+        width: 80%;
+    }
+}

@@ -1,0 +1,277 @@
+<div class="container-fluid bgcolor text-light p-3 " style="height: 70px;">
+    <div class="row">
+        <div class="col-6 d-flex align-items-center">
+            <img src="assets/Image/erasebg-transformed.png" (click)="goToHome()" alt="Sathyabama University Logo" class="logoimage1">
+
+        </div>
+        <div class="col-6 d-flex justify-content-end align-items-center">
+            <span class="material-symbols-outlined mx-1">
+                notifications
+            </span>
+            <span>
+                <img src="https://erp.sathyabama.ac.in/assets/images/Chancellor.jpg" alt="Sathyabama University Logo" class="logoimage2 mx-2">
+            </span>
+            <div class="dropdown">
+                <a class="btn border-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    {{studentData?.user_name}}
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Welcome!</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-lock"></i> Change Password</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#" (click)="logout()"><i
+                                class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="student-registration-container">
+    <h2>Student Information</h2>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+        <div class="form-group-containers">
+        <!-- Personal Information -->
+        <fieldset>
+          <legend>Personal Information</legend>
+      
+          <div class="form-group">
+            <label>Name:</label>
+            <input type="text" formControlName="user_name" class="form-control">
+            <span class="error" *ngIf="isInvalid('user_name')">Name is required.</span>
+          </div>
+      
+          <div class="form-group">
+            <label>Gender:</label>
+            <select formControlName="gender" class="form-control">
+              <option value="MALE">Male</option>
+              <option value="FEMALE">Female</option>
+            </select>
+            <span class="error" *ngIf="isInvalid('gender')">Gender is required.</span>
+          </div>
+      
+          <div class="form-group">
+            <label>Date of Birth:</label>
+            <input type="date" formControlName="dob" class="form-control">
+            <span class="error" *ngIf="isInvalid('dob')">Date of birth is required.</span>
+          </div>
+      
+          <div class="form-group">
+            <label>Nationality:</label>
+            <input type="text" formControlName="nationality" class="form-control">
+            <span class="error" *ngIf="isInvalid('nationality')">Nationality is required.</span>
+          </div>
+      
+          <div class="form-group">
+            <label>Religion:</label>
+            <input type="text" formControlName="religion" class="form-control">
+          </div>
+      
+          <div class="form-group">
+            <label>Caste:</label>
+            <input type="text" formControlName="caste" class="form-control">
+          </div>
+      
+          <div class="form-group">
+            <label>Mother Tongue:</label>
+            <input type="text" formControlName="mother_tongue" class="form-control">
+          </div>
+      
+          <div class="form-group">
+            <label>Native Place:</label>
+            <input type="text" formControlName="native_place" class="form-control">
+          </div>
+      
+          <div class="form-group">
+            <label>Blood Group:</label>
+            <input type="text" formControlName="blood_group" class="form-control">
+          </div>
+        </fieldset>
+      
+        <!-- Contact Details -->
+        <fieldset>
+          <legend>Contact Details</legend>
+      
+          <div class="form-group">
+            <label>Mobile No:</label>
+            <input type="text" formControlName="mobile_no" class="form-control">
+            <span class="error" *ngIf="isInvalid('mobile_no')">Enter a valid 10-digit number.</span>
+          </div>
+      
+          <div class="form-group">
+            <label>Email:</label>
+            <input type="email" formControlName="email" class="form-control">
+            <span class="error" *ngIf="isInvalid('email')">Enter a valid email address.</span>
+          </div>
+      
+          <div class="form-group">
+            <label>Aadhaar No:</label>
+            <input type="text" formControlName="aadhaar" class="form-control">
+            <span class="error" *ngIf="isInvalid('aadhaar')">Invalid aadhaar number.</span>
+          </div>
+
+          <div class="form-group">
+            <label>Password:</label>
+            <input type="text" formControlName="password" class="form-control">
+            <span class="error" *ngIf="isInvalid('password') && registrationForm.get('password')?.errors?.['required']">Password is required.</span>
+            <span class="error" *ngIf="isInvalid('password') && registrationForm.get('password')?.errors?.['minlength']">Minimum 8 characters required.</span>
+          </div>
+        </fieldset>
+      
+        <!-- Educational Details -->
+        <fieldset>
+          <legend>Educational Details</legend>
+      
+          <div class="form-group">
+            <label>Register No:</label>
+            <input type="text" formControlName="reg_no" class="form-control">
+            <span class="error" *ngIf="isInvalid('reg_no')">Register number is required.</span>
+          </div>
+      
+          <div class="form-group">
+            <label>Batch:</label>
+            <input type="text" formControlName="batch" class="form-control">
+          </div>
+      
+          <div class="form-group">
+            <label>Semester:</label>
+            <input type="number" formControlName="semester" class="form-control">
+          </div>
+      
+          <div class="form-group">
+            <label>Current Year:</label>
+            <input type="number" formControlName="current_year" class="form-control">
+          </div>
+      
+          <div class="form-group">
+            <label>Section:</label>
+            <input type="text" formControlName="section_name" class="form-control">
+          </div>
+      
+          <div class="form-group">
+            <label>Course:</label>
+            <input type="text" formControlName="course" class="form-control">
+          </div>
+      
+          <div class="form-group">
+            <label>School:</label>
+            <input type="text" formControlName="school" class="form-control">
+          </div>
+      
+          <div class="form-group">
+            <label>Course Duration (Years):</label>
+            <input type="number" formControlName="course_duration_in_years" class="form-control">
+          </div>
+        </fieldset>
+      
+        <!-- Parents Information -->
+        <div class="parents-info" formArrayName="parents">
+            <div class="parent-static-section">
+                <legend class="parent-legend">Parent Details</legend>
+                <label class="add-parent" [class.disabled]="parents.length >= 3" (click)="addParent()">+ Add</label>
+                <div class="parent-tab">
+                    <label [class.selected]="selectedParentIndex === i" *ngFor="let parent of parents.controls; let i = index" (click)="selectParent(i)" class="parent-type">
+                        {{parent.get('parent_type')?.value.toLowerCase()}} <label (click)="removeParent(i)">×</label>
+                    </label>
+                </div>
+            </div>
+        
+        <fieldset *ngFor="let parent of parents.controls; let i = index" [formGroupName]="i">
+            
+            <div class="form-group">
+              <label>Parent Type:</label>
+              <select formControlName="parent_type" class="form-control">
+                <option value="FATHER" selected>Father</option>
+                <option value="MOTHER">Mother</option>
+                <option value="GUARDIAN">Guardian</option>
+              </select>
+              <span class="error" *ngIf="isInvalid('parent_type', parent)">Parent type is required.</span>
+            </div>
+        
+            <div class="form-group">
+              <label>Full Name:</label>
+              <input type="text" formControlName="full_name" class="form-control">
+              <span class="error" *ngIf="isInvalid('full_name', parent)">Full name is required.</span>
+            </div>
+
+            <div class="form-group">
+                <label>Profile Image:</label>
+                
+                <input id="profile-image-chooser-{{i+1}}" [hidden]="parent.get('profile_image')?.value" type="file" (change)="onFileSelect($event, parent)" class="form-control">
+                <div (click)="chooseFile('profile-image-chooser-'+(i+1))" class="profile-image-container"><img [src]="parent.get('profile_image')?.value" *ngIf="parent.get('profile_image')?.value" class="profile-image"></div>
+            </div>
+        
+            <div class="form-group">
+              <label>Phone Number:</label>
+              <input type="text" formControlName="phone_number" class="form-control">
+              <span class="error" *ngIf="isInvalid('phone_number', parent)">Enter a valid 10-digit phone number.</span>
+            </div>
+        
+            <div class="form-group">
+              <label>Occupation:</label>
+              <input type="text" formControlName="occupation" class="form-control">
+            </div>
+        
+            <div class="form-group">
+              <label>Designation:</label>
+              <input type="text" formControlName="designation" class="form-control">
+            </div>
+        
+            <div class="form-group">
+              <label>Aadhaar No:</label>
+              <input type="text" formControlName="aadhaar_no" class="form-control">
+              <span class="error" *ngIf="isInvalid('aadhaar_no',parent) && parent.get('aadhaar_no')?.errors?.['required']">Aadhaar is required.</span>
+            <span class="error" *ngIf="isInvalid('aadhaar_no', parent) && parent.get('aadhaar_no')?.errors?.['pattern']">Invalid aadhaar number.</span>
+            </div>
+        
+            <div class="form-group">
+              <label>Email:</label>
+              <input type="email" formControlName="email" class="form-control">
+              <span class="error" *ngIf="isInvalid('email', parent)">Enter a valid email address.</span>
+            </div>
+        
+            <div class="form-group">
+              <label>Annual Income:</label>
+              <input type="number" formControlName="annual_income" class="form-control">
+              <span class="error" *ngIf="isInvalid('annual_income', parent)">Annual income is required.</span>
+            </div>
+        
+          </fieldset>
+        </div>
+        <!-- Additional Information -->
+        <fieldset>
+          <legend>Additional Information</legend>
+      
+          <div class="form-group">
+            <label>User Type:</label>
+            <input type="text" formControlName="user_type" class="form-control">
+          </div>
+      
+          <div class="form-group">
+            <label>First Graduate:</label>
+            <select formControlName="first_graduate" class="form-control">
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+            <span class="error" *ngIf="isInvalid('first_graduate')">This field is required.</span>
+          </div>
+      
+          <div class="form-group">
+            <label>Student Profile Image:</label>
+            <!-- <input type="text" formControlName="profile_image" class="form-control"> -->
+            <input id="student-profile-image-chooser" [hidden]="registrationForm.get('profile_image')?.value" type="file" (change)="onFileSelect($event, registrationForm)" class="form-control">
+                <div (click)="chooseFile('student-profile-image-chooser')" class="profile-image-container"><img [src]="registrationForm.get('profile_image')?.value" *ngIf="registrationForm.get('profile_image')?.value" class="profile-image"></div>
+          </div>
+        </fieldset>
+        </div>
+        <div class="form-action-btn-container">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+       
+      
+
+</div>

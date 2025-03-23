@@ -1,0 +1,54 @@
+table.dataTable thead th {
+    padding: 10px 18px !important;
+    border-top: 2px solid #efefef !important;
+    border-bottom: 1px solid #efefef !important;
+    background-color: #fbfcfd;
+}
+
+#attendance-container{
+    padding: 20px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.date-range{
+    border: 0;
+    padding: 5px;
+    margin-right: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.range-picker-label{
+    display: block;
+    margin-bottom: 10px;
+}
+
+table{
+    width: 100% !important;
+    border-collapse: collapse;
+    td, th {
+        padding: 3px 10px;
+        font-size: 14px;
+    }
+    tbody tr{
+        background-color: #fff;
+    }
+    tbody tr:nth-child(odd){
+        background-color: #d5f1f6 !important;
+    }
+    .PRESENT{
+        color: green;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .ABSENT{
+        color: red;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    th{
+        background-color: #7ab5c8 !important;
+    }
+}

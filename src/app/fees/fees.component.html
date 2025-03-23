@@ -1,0 +1,133 @@
+<div class="fee-container">
+    <ng-container [ngSwitch]="viewType">
+        <div *ngSwitchCase="'TUITION'">
+            <h3 class="section-name">Tuition Fees</h3>
+            <div class="fee-table">
+                <table class="dataTable">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Academic Year</th>
+                            <th>Fees</th>
+                            <th>Paid</th>
+                            <th>Fees Status</th>
+                            <th>Last Transaction Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of tuitionFees; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.acadamic_year}}</td>
+                            <td>₹ {{data.course_fees}}</td>
+                            <td>{{data.paid ? '₹ ' + data.paid: '--'}}</td>
+                            <td class="{{data.course_fees <= data.paid ? 'FULLY_PAID' : 'PARTIALLY_PAID'}}">{{!data.paid ? '--' : data.course_fees <= data.paid ? 'FULLY PAID' : 'PARTIALLY PAID'}}</td>
+                            <td>{{data.last_transaction_date | date:'dd-MM-yyyy'}}</td>
+                        </tr>
+                        <tr *ngIf="tuitionFees.length == 0">
+                            <td colspan="10">no data to disply..</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div *ngSwitchCase="'PLACEMENT'">
+            <h3 class="section-name">Placement Fees</h3>
+            <div class="fee-table">
+                <table class="dataTable">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Exam Name</th>
+                            <th>Fees</th>
+                            <th>Paid</th>
+                            <th>Fees Status</th>
+                            <th>Last Transaction Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of placementFees; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.exam_name}}</td>
+                            <td>₹ {{data.fees}}</td>
+                            <td>{{data.paid ? '₹ ' + data.paid: '--'}}</td>
+                            <td class="{{data.fees <= data.paid ? 'FULLY_PAID' : 'PARTIALLY_PAID'}}">{{data.paid == undefined ? '--' : data.fees <= data.paid ? 'FULLY PAID' : 'PARTIALLY PAID'}}</td>
+                            <td>{{data.last_transaction_date | date:'dd-MM-yyyy'}}</td>
+                        </tr>
+                        <tr *ngIf="tuitionFees.length == 0">
+                            <td colspan="10">no data to disply..</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'ARREAR'">
+            <h3 class="section-name">{{viewType.toLowerCase()}} Fees</h3>
+            <div class="fee-table">
+                <table class="dataTable">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Course Name</th>
+                            <th>Fees</th>
+                            <th>Paid</th>
+                            <th>Fees Status</th>
+                            <th>Last Transaction Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of arrearFees; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.course_name}}</td>
+                            <td>₹ {{data.fees}}</td>
+                            <td>{{data.paid ? '₹ ' + data.paid: '--'}}</td>
+                            <td class="{{data.fees <= data.paid ? 'FULLY_PAID' : 'PARTIALLY_PAID'}}">
+                                {{data.paid == undefined ? '--' : data.fees <= data.paid ? 'FULLY PAID' : 'PARTIALLY PAID'}}
+                            </td>
+                            <td>{{data.last_transaction_date | date:'dd-MM-yyyy'}}</td>
+                        </tr>
+                        <tr *ngIf="arrearFees.length == 0">
+                            <td colspan="10">no data to disply..</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div *ngSwitchCase="'REVALUATION'">
+            <h3 class="section-name">{{viewType.toLowerCase()}} Fees</h3>
+            <div class="fee-table">
+                <table class="dataTable">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Course Name</th>
+                            <th>Fees</th>
+                            <th>Paid</th>
+                            <th>Fees Status</th>
+                            <th>Last Transaction Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of revaluationFees; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{data.course_name}}</td>
+                            <td>₹ {{data.fees}}</td>
+                            <td>{{data.paid ? '₹ ' + data.paid: '--'}}</td>
+                            <td class="{{data.fees <= data.paid ? 'FULLY_PAID' : 'PARTIALLY_PAID'}}">
+                                {{data.paid == undefined ? '--' : data.fees <= data.paid ? 'FULLY PAID' : 'PARTIALLY PAID'}}
+                            </td>
+                            <td>{{data.last_transaction_date | date:'dd-MM-yyyy'}}</td>
+                        </tr>
+                        <tr *ngIf="revaluationFees.length == 0">
+                            <td colspan="10">no data to disply..</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </ng-container>
+
+</div>

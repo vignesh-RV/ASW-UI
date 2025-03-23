@@ -1,0 +1,102 @@
+<div class="rfid-container">
+    <div class="rfid-mock">
+        <div class="rfid_details">
+            <div class="left-side">
+                <p class="black-hole"></p>
+                <img src="https://sathyabama-erp-s3.s3.ap-south-1.amazonaws.com/student/profile/190999-1700726909141-43310003.jpg" class="card-img-top rounded-circle  img-thumbnail"
+                            alt="Student Image">
+            </div>
+            <div class="right-side">
+                <label>Name: {{userData?.user_name}}</label>
+                <label>Roll No: {{userData?.reg_no}}</label>
+                <label>Avail Balance: ₹ {{rfidData?.balance}}</label>
+                <label>Max Limit: {{rfidData?.max_limit ? '₹ '+rfidData?.max_limit :'--'}}</label>
+            </div>
+        </div>
+        <label class="rfid_id"><span *ngIf="rfidData?.locked">🔒</span>{{rfidData?.uuid}}</label>
+    </div>
+    <div class="parent-view-mode card-controls">
+        <button class="btn btn-primary" (click)="showPaymentModal()">Add Payment</button>
+        <button class="btn btn-primary" (click)="editLimit()">Edit Limits</button>
+        <button class="btn btn-primary" (click)="lockTheCard()">{{this.rfidData.locked ? 'Unlock' : 'Lock'}} the Card</button>
+    </div>
+    <div class="rfid-transactions">
+        <h3>Transactions</h3>
+        
+        <div class="rfid-tables">
+            <table class="dataTable">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Paid For</th>
+                        <th>Amount</th>
+                        <th>Transaction Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of paymentsHistory; let i = index">
+                        <td>{{i+1}}</td>
+                        <td class="camel_case">{{data.transaction_type.toLowerCase()}}</td>
+                        <td>₹ {{data.amount}}</td>
+                        <td>{{data.created_date | date:'dd-MM-yyyy hh:mm:ss'}}</td>
+                    </tr>
+                    <tr *ngIf="paymentsHistory.length == 0">
+                        <td colspan="10">no data to disply..</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div [class.show]="showModal" class="modal-overlay">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3>{{currentModal.title}}</h3>
+            <span class="close-modal" (click)="closeModal()">X</span>
+        </div>
+        <div class="modal-body">
+            <ng-container [ngSwitch]="currentModal.type">
+            <form *ngSwitchCase="'PAYMENT'" [formGroup]="paymentForm">
+                <label class="form-label">Available Balance: {{rfidData.balance}}</label>
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" class="form-control" formControlName="amount" name="amount" id="amount" >
+                    <span class="error" *ngIf="isInvalid('amount') && paymentForm.get('amount')?.errors?.['required']">Amount is required.</span>
+                </div>
+                <div class="form-group">
+                    <label for="upi-id">UPI Id:</label>
+                    <input type="text" class="form-control" formControlName="upi_id" name="upi-id" id="upi-id" >
+                    <span class="error" *ngIf="isInvalid('upi_id') && paymentForm.get('upi_id')?.errors?.['required']">UPI Id is required.</span>
+                    <span class="error" *ngIf="isInvalid('upi_id') && paymentForm.get('upi_id')?.errors?.['pattern']">Invalid UPI Id.</span>
+                </div>
+                <div *ngIf="progressBar" class="progress">
+                    <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="70" aria-valuemin="0" aria-valuemax="100" [style.width.%]="progressBar">
+                      {{progressBar}}%
+                    </div>
+                </div>
+            </form>
+
+
+            <form *ngSwitchCase="'LIMIT'" [formGroup]="limitForm">
+                <label class="form-label">Available Balance: {{rfidData.balance}}</label>
+                
+                <div class="form-group">
+                    <label for="amount">Transaction Limit</label>
+                    <input type="number" class="form-control" formControlName="max_limit" name="amount" id="amount" >
+                    <span class="error" *ngIf="isInvalid('max_limit', limitForm) && limitForm.get('max_limit')?.errors?.['required']">Limit is required.</span>
+                </div>
+                <div *ngIf="progressBar" class="progress">
+                    <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="70" aria-valuemin="0" aria-valuemax="100" [style.width.%]="progressBar">
+                      {{progressBar}}%
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" (click)="doAction()">{{currentModal.action_text}} </button>
+        </div>
+    </div>
+</div>

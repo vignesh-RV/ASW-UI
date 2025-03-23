@@ -1,0 +1,38 @@
+<div class="login-container-section">
+<div class="login-container">
+    <div class="login-form">
+        <div>
+            <img src="https://erp.sathyabama.ac.in/assets/images/sathyabama_header-logo-A++.jpg" alt="Logo" class="logoimage">
+            <!-- <h2>AJS Insitute</h2> -->
+        </div>
+        <label style="margin: 10px 0;">Enter Student RegNo and Password to access student panel.</label>
+        <!-- <input type="text" id="username" name="username" required="true"> -->
+        <form action="#" method="post">
+            <div class="input-group">
+                <select name="orderby"  [(ngModel)]="loginData.user_type"  class="orderby">
+                    <!-- <option value="staff">Staff</option> -->
+                    <option value="student" selected="selected">Student</option>
+                    <option value="parent">Parents</option>
+                </select>
+                <input type="hidden" name="paged" value="1">
+            </div>
+            <div class="input-group">
+                <label for="username">Register Number</label>
+                <input type="text" id="username" name="username" [(ngModel)]="loginData.reg_no" placeholder="Register Number">
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" [(ngModel)]="loginData.password"  placeholder="Password">
+            </div>
+            <button type="submit" (click)="doLogin()" class="btn">Login</button>
+        </form>
+        <br>
+        <br>
+  
+        <div>
+            <a href="" class="forgotpass" for="forgotpassword">Forgot your password?</a>
+        </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,571 @@
+<div class="home-container-section">
+    <div class="container-fluid bgcolor text-light p-3 " style="height: 70px;">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center">
+                <img src="assets/Image/erasebg-transformed.png" (click)="goToHome()" alt="Sathyabama University Logo" class="logoimage1">
+
+            </div>
+            <div class="col-6 d-flex justify-content-end align-items-center">
+                <span class="material-symbols-outlined mx-1">
+                    notifications
+                </span>
+                <span>
+                    <img src="https://erp.sathyabama.ac.in/assets/images/Chancellor.jpg" alt="Sathyabama University Logo" class="logoimage2 mx-2">
+                </span>
+                <div class="dropdown">
+                    <a class="btn border-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{studentData?.user_name}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Welcome!</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-lock"></i> Change Password</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#" (click)="logout()"><i
+                                    class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="row" >
+            <div class="col-md-3 card" style="background-color: #c1e1eb; margin-bottom: 10px;">
+                <div class="text-center p-3">
+                    <label class="edit_profile_icon" (click)="editProfile()">Edit Profile</label>
+                    <img [src]="studentData?.profile_image || 'https://erp.sathyabama.ac.in/assets/images/father.png'" class="card-img-top rounded-circle  img-thumbnail"
+                        alt="Student Image">
+                </div>
+                <div class="card-body">
+                    <div class="text-center" style="border-bottom: 3px solid #fff; padding-bottom: 10px;">
+                        <h5 class="card-title">{{studentData?.user_name}}</h5>
+                        <h4 class="card-text">{{studentData.reg_no}}</h4>
+                        <p class="card-text">{{studentData.course}}</p>
+                        <p class="card-text">{{studentData?.email}}</p>
+                    </div>
+                    <div class="mt-2" style="border-bottom: 3px solid #fff; padding-bottom: 10px;">
+                        <div class="row d-flex p-2" style="font-size: 18px; font-weight: 500">
+                            <div class="col-6">
+                                <span class="">Roll Number</span>
+                            </div>
+                            <div class="col-1">
+                                <span class="">:</span>
+                            </div>
+                            <div class="col-5">
+                                <span>{{studentData.reg_no}}</span>
+                            </div>
+                        </div>
+                        <div class="row d-flex p-2" style="font-size: 18px; font-weight: 500">
+                            <div class="col-6">
+                                <span class="">Date of Birth</span>
+                            </div>
+                            <div class="col-1">
+                                <span class="">:</span>
+                            </div>
+                            <div class="col-5">
+                                <span>{{studentData.dob | date:'dd-MM-yyyy'}}</span>
+                            </div>
+                        </div>
+                        <div class="row d-flex p-2" style="font-size: 18px; font-weight: 500">
+                            <div class="col-6">
+                                <span class="">Mobile</span>
+                            </div>
+                            <div class="col-1">
+                                <span class="">:</span>
+                            </div>
+                            <div class="col-5">
+                                <span>{{studentData.mobile_no}}</span>
+                            </div>
+                        </div>
+                        <div class="row d-flex p-2" style="font-size: 18px; font-weight: 500">
+                            <div class="col-6">
+                                <span class="">Age</span>
+                            </div>
+                            <div class="col-1">
+                                <span class="">:</span>
+                            </div>
+                            <div class="col-5">
+                                <span>{{studentData.dob | age}}</span>
+                            </div>
+                        </div>
+                        <div class="row d-flex p-2" style="font-size: 18px; font-weight: 500">
+                            <div class="col-6">
+                                <span class="">Batch</span>
+                            </div>
+                            <div class="col-1">
+                                <span class="">:</span>
+                            </div>
+                            <div class="col-5">
+                                <span>{{studentData.batch}}</span>
+                            </div>
+                        </div>
+                        <div class="row d-flex p-2" style="font-size: 18px; font-weight: 500">
+                            <div class="col-6">
+                                <span class="">Semester</span>
+                            </div>
+                            <div class="col-1">
+                                <span class="">:</span>
+                            </div>
+                            <div class="col-5">
+                                <span>{{studentData.semester}}</span>
+                            </div>
+                        </div>
+                        <div class="row d-flex p-2" style="font-size: 18px; font-weight: 500">
+                            <div class="col-6">
+                                <span class="">Year</span>
+                            </div>
+                            <div class="col-1">
+                                <span class="">:</span>
+                            </div>
+                            <div class="col-5">
+                                <span>{{studentData.current_year}} (2024-2025)</span>
+                            </div>
+                        </div>
+                        <div class="row d-flex p-2" style="font-size: 18px; font-weight: 500">
+                            <div class="col-6">
+                                <span class="">Section Name</span>
+                            </div>
+                            <div class="col-1">
+                                <span class="">:</span>
+                            </div>
+                            <div class="col-5">
+                                <span>{{studentData.section_name}}</span>
+                            </div>
+                        </div>
+                        <div class="row d-flex p-2" style="font-size: 18px; font-weight: 500">
+                            <div class="col-6">
+                                <span class="">School</span>
+                            </div>
+                            <div class="col-1">
+                                <span class="">:</span>
+                            </div>
+                            <div class="col-5">
+                                <span>{{studentData.school}}</span>
+                            </div>
+                        </div>
+                        <div class="row d-flex p-2" style="font-size: 18px; font-weight: 500">
+                            <div class="col-6">
+                                <span class="">Course</span>
+                            </div>
+                            <div class="col-1">
+                                <span class="">:</span>
+                            </div>
+                            <div class="col-5">
+                                <span>{{studentData.course}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <ng-container [ngSwitch]="currentView">
+            <div *ngSwitchCase="'info'" class="col-md-6" style="margin-bottom: 10px;" id="informationdiv">
+                <div class="card">
+                    <div class="card-header center-head">
+                        Personal Details
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control border-0" id="name"
+                                        value="{{studentData.user_name}}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bloodGroup" class="form-label">Blood Group</label>
+                                    <input type="text" class="form-control border-0" id="bloodGroup"
+                                        placeholder="{{studentData?.blood_group}}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="height" class="form-label">Height</label>
+                                    <input type="text" class="form-control border-0" id="height"
+                                        placeholder="{{studentData?.height}}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="religion" class="form-label">Religion</label>
+                                    <input type="text" class="form-control border-0" id="religion" value="{{studentData?.religion}}"
+                                        readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <input type="text" class="form-control border-0" id="gender" value="{{studentData?.gender}}" readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="medicalHistory" class="form-label">Medical History</label>
+                                    <label class="form-control border-0" id="medicalHistory" >--</label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dateOfBirth" class="form-label">Date of Birth</label>
+                                    <input type="text" class="form-control border-0" id="dateOfBirth" value="{{studentData?.dob | date:'dd-MM-yyyy'}}"
+                                        readonly>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="community" class="form-label">Community</label>
+                                    <input type="text" class="form-control border-0" id="community" value="{{studentData?.caste}}"
+                                        readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6">
+                        <div class="card text-center">
+                            <div class="text-center p-3">
+                                <img src="{{ parentData.father.profile_image || 'https://erp.sathyabama.ac.in/assets/images/father.png'}}" class="card-img-top rounded-circle  img-thumbnail"
+                                    alt="Father Image">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{parentData.father.full_name}}</h5>
+                                <p class="card-text">{{parentData.father.phone_number || '--'}}</p>
+                                <div class="row">
+                                    <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
+                                        <div class="col-6">
+                                            <span class="">Occupation</span>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="">:</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <span>{{parentData.father.occupation || '--'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
+                                        <div class="col-6">
+                                            <span class="">Office Designation</span>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="">:</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <span>{{parentData.father.designation || '--'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
+                                        <div class="col-6">
+                                            <span class="">Annual Income</span>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="">:</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <span>{{parentData.father.annual_income || '--'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
+                                        <div class="col-6">
+                                            <span class="">Aadhar</span>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="">:</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <span>{{parentData.father.aadhaar_no || '--'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
+                                        <div class="col-6">
+                                            <span class="">Email</span>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="">:</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <span>{{parentData.father.email || '--'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
+                                        <div class="col-6">
+                                            <span class="">Mobile</span>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="">:</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <span>{{parentData.father.phone_number || '--'}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="card text-center">
+                            <div class="text-center p-3">
+                                <img src="{{ parentData.mother.profile_image || 'https://erp.sathyabama.ac.in/assets/images/mother.png'}}" class="card-img-top rounded-circle  img-thumbnail"
+                                    alt="Mother Image">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{parentData.mother.full_name || '--'}}</h5>
+                                <p class="card-text">-</p>
+                                <div class="row">
+                                    <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
+                                        <div class="col-6">
+                                            <span class="">Occupation</span>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="">:</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <span>{{parentData.mother.occupation || '--'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
+                                        <div class="col-6">
+                                            <span class="">Office Designation</span>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="">:</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <span>{{parentData.mother.designation || '--'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
+                                        <div class="col-6">
+                                            <span class="">Annual Income</span>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="">:</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <span>{{parentData.mother.annual_income || '--'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
+                                        <div class="col-6">
+                                            <span class="">Aadhar</span>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="">:</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <span>{{parentData.mother.aadhaar_no || '--'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
+                                        <div class="col-6">
+                                            <span class="">Email</span>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="">:</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <span>{{parentData.mother.email || '--'}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
+                                        <div class="col-6">
+                                            <span class="">Mobile</span>
+                                        </div>
+                                        <div class="col-1">
+                                            <span class="">:</span>
+                                        </div>
+                                        <div class="col-5">
+                                            <span>{{parentData.mother.phone_number || '--'}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-2">
+                    <div class="card-header center-head">
+                        Sibling Details
+                    </div>
+                    <div class="card-body">
+                        <tbody>
+                            <tr>
+                                <td colspan="4" class="text-center">No Data Available</td>
+                            </tr>
+                        </tbody>
+                    </div>
+                </div>
+                <div class="card mt-2">
+                    <div class="card-header center-head">
+                        COVID Vaccine Details
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Vaccination Name</th>
+                                    <th scope="col">Brand</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Certificate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4" class="text-center">No Data Available</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card mt-2">
+                    <div class="card-header center-head">
+                        Educational Qualification
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Class</th>
+                                    <th scope="col">Qualifying Exam</th>
+                                    <th scope="col">Year of Passing</th>
+                                    <th scope="col">Board</th>
+                                    <th scope="col">Medium</th>
+                                    <th scope="col">Certificate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>10th</td>
+                                    <td>0</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="#"><i class="fa-solid fa-download"></i></a></td>
+                                </tr>
+                                <tr>
+                                    <td>12th</td>
+                                    <td>0</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td><a href="#"><i class="fa-solid fa-download"></i></a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div *ngSwitchCase="'attendance'" class="col-md-6" id="attendancediv">
+                <app-attendance [viewType]="attendanceViewType"></app-attendance>                
+            </div>
+            <div *ngSwitchCase="'transaction'" class="col-md-6" id="attendancediv">
+                <app-rfid></app-rfid>                
+            </div>
+            <div *ngSwitchCase="'fees'" class="col-md-6" id="attendancediv">
+                <app-fees [viewType]="feeViewType"></app-fees>                
+            </div>
+            <div *ngSwitchCase="'card'" class="col-md-6" id="feesdiv">
+                <div class="card p-2 h-100">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card" style="background-color: #4285F4; color: white;">
+                                    <div class="card-headertrans" style="border-bottom: 2px solid;">
+                                        <span class="material-symbols-outlined">
+                                            person
+                                            </span>
+                                        <span>Ashwin Vigneshwar</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h2 class="card-title">Card Balance</h2>
+                                        <h1 class="card-balance" id="cardBalance">₹743.00</h1>
+                                        <p class="card-text">Ashwin Vigneshwar</p>
+                                        <div class="card-text">**** **** **** 1234</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h2 class="card-title">Transaction</h2>
+                                        <ul class="transaction-list" id="transactionList"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+              
+            </div>
+
+            </ng-container>
+            <div class="col-md-3" style="margin-bottom: 10px;">
+                <div class="card p-2 h-100">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mb-3 center-head">Student Details</div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3 box-hg clickable" (click)="currentView = 'info'">
+                                    <div class="card bg-light h-100">
+                                        <div class="card-body std-det  soft-primary">
+                                            Information
+                                        </div>
+                                    </div>
+                                </div>
+                                <div (click)="attendanceViewType= 'HOURLY';currentView = 'attendance'" class="col-md-6 mb-3 box-hg clickable">
+                                    <div class="card bg-light h-100">
+                                        <div class="card-body std-det soft-purple">
+                                            Hourly Attendance
+                                        </div>
+                                    </div>
+                                </div>
+                                <div (click)="attendanceViewType= 'DAILY';currentView = 'attendance'" class="col-md-6 mb-3 box-hg clickable" >
+                                    <div class="card bg-light h-100">
+                                        <div class="card-body std-det soft-danger">
+                                            Daily Attendance
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3 box-hg clickable" (click)="currentView = 'transaction'" >
+                                    <div class="card bg-light h-100">
+                                        <div class="card-body std-det soft-success">
+                                            Transactions
+                                        </div>
+                                    </div>
+                                </div>
+                                <div (click)="feeViewType= 'TUITION';currentView = 'fees'" class="col-md-6 mb-3 box-hg clickable">
+                                    <div class="card bg-light h-100">
+                                        <div class="card-body std-det soft-info">
+                                            Tuition Fees
+                                        </div>
+                                    </div>
+                                </div>
+                                <div (click)="feeViewType= 'PLACEMENT';currentView = 'fees'" class="col-md-6 mb-3 box-hg clickable">
+                                    <div class="card bg-light h-100">
+                                        <div class="card-body std-det  soft-primary">
+                                            Placement Fees
+                                        </div>
+                                    </div>
+                                </div>
+                                <div (click)="feeViewType= 'ARREAR';currentView = 'fees'" class="col-md-6 mb-3 box-hg clickable">
+                                    <div class="card bg-light h-100">
+                                        <div class="card-body std-det soft-danger">
+                                            Arrear Fees
+                                        </div>
+                                    </div>
+                                </div>
+                                <div  (click)="feeViewType= 'REVALUATION';currentView = 'fees'" class="col-md-6 mb-3 box-hg clickable">
+                                    <div class="card bg-light h-100">
+                                        <div class="card-body std-det soft-success">
+                                            Revaluation Fees
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

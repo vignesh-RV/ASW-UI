@@ -1,0 +1,151 @@
+.rfid-container{
+    padding: 20px;
+    background-color: #eee;
+    .rfid-mock{
+        height: 200px !important;
+        overflow: hidden;
+        width: 450px !important;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 4px 3px 9px #aaa;
+        .rfid_details{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 90%;
+        }
+        padding: 10px;
+        
+        margin: auto;
+        .left-side{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 50%;
+            border-right: solid 1px;
+            margin-right: 1rem;
+            img{
+                width: 100px;
+                height: 100px;
+            }
+            .black-hole{
+                background-color: #eee;
+                height: 80px;
+                width: 15px;
+                border-radius: 6px;
+                margin: 0;
+                box-shadow: -1px 0px 0px #aaa;
+            }
+        }
+        .right-side{
+            display: flex;            ;
+            flex-direction: column;
+            width: 50%;
+            padding: 10px;
+            line-height: 2rem;
+            label{
+                font-family: monospace;
+                font-style: italic;
+                white-space: nowrap;
+                font-size: 13px;
+            }
+        }
+        .rfid_id{
+            font-family: monospace;
+            font-style: italic;
+            float: right;
+        }
+    }
+}
+
+table{
+    width: 100% !important;
+    border-collapse: collapse;
+    td, th {
+        padding: 3px 10px;
+        font-size: 14px;
+    }
+    tbody tr{
+        background-color: #fff;
+    }
+    tbody tr:nth-child(odd){
+        background-color: #d5f1f6 !important;
+    }
+    .FULLY_PAID{
+        color: green;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .PARTIALLY_PAID{
+        color: red;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    th{
+        background-color: #7ab5c8 !important;
+    }
+}
+
+h3{
+    margin: 2rem 0;
+}
+
+
+.modal-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000080;
+    z-index: 1;
+    overflow: hidden;
+    display: none;
+    &.show{
+        display: flex;
+    }
+    .modal-container{
+        background-color: #fff;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        width: 50vw;
+        height: 50vh;
+        padding: 2rem;
+        .modal-header{
+            border-bottom: solid;
+            h3{
+                margin: 0;
+                color: #2424a0;
+                margin-bottom: 1rem;
+            }
+        }
+        .modal-body{
+            padding: 1rem;
+            label{
+                font-weight: bold;
+                font-size: 14px !important;
+            }
+        }
+        .modal-footer{
+            border-top: solid #2424a0;
+            padding: 1rem;
+        }
+    }
+}
+
+.parent-view-mode{
+    display: flex;
+    float: right;
+    margin: 10px;
+    .btn{
+        margin: 10px;
+    }
+}
+
+.close-modal{
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transform: translateY(-10px);
+}
