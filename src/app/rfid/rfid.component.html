@@ -15,7 +15,7 @@
         </div>
         <label class="rfid_id"><span *ngIf="rfidData?.locked">🔒</span>{{rfidData?.uuid}}</label>
     </div>
-    <div class="parent-view-mode card-controls">
+    <div *ngIf="userData?.logged_in_as == 'PARENT'" class="parent-view-mode card-controls">
         <button class="btn btn-primary" (click)="showPaymentModal()">Add Payment</button>
         <button class="btn btn-primary" (click)="editLimit()">Edit Limits</button>
         <button class="btn btn-primary" (click)="lockTheCard()">{{this.rfidData.locked ? 'Unlock' : 'Lock'}} the Card</button>

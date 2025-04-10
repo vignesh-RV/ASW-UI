@@ -1,0 +1,34 @@
+.student-list-container{
+    background-color: #eee;
+    .student-list-section{
+        margin: 2% 12%;
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+    }
+    .student-list-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .student-list-table{
+        border-collapse: collapse;
+        width: 100%;
+        td, th{
+            border: solid 1px #ddd;
+            padding: 5px;
+        }
+    }
+
+    .btn{
+        padding: 0;
+        min-width: 70px;
+        &:first-child{
+            margin-right: 10px;
+        }
+    }
+
+    .add-student-button{
+        padding: 3px 10px;
+    }
+}

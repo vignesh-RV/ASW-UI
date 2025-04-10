@@ -40,6 +40,10 @@ export class HomeComponent implements OnInit {
     this.common.router.navigate(['home']);
   }
 
+  goToStudentList(){
+    this.common.router.navigate(['student-list']);
+  }
+
   logout() {
     localStorage.clear();
     window.location.reload();

@@ -156,6 +156,11 @@ export class ApiService {
         this.handleUnAuthorisedError(message, type, path);
         break;
       }
+      default: {
+        console.error(err);
+        this.alertMsg.error('Please try again later..');
+        break;
+      }
     }
   }
 
@@ -209,7 +214,7 @@ export class ApiService {
     nonJsonResponse?: any,
     handleError?: boolean
   ): Promise<any> {
-    // url = environment.baseUrl + url;
+    url = environment.apiBasePath + url;
 
     return new Promise((resolve, reject) => {
       this.request(type, url, body, applicationType)?.subscribe({

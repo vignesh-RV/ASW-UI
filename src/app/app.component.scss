@@ -1,0 +1,73 @@
+.otp-screen-overlay{
+    position: fixed;
+    background-color: #00000099;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.otp-container {
+    display: flex;
+    gap: 10px;
+    justify-content: space-evenly;
+    margin: 2rem;
+}
+
+.otp-input {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.otp-input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.otp-input:disabled {
+    background-color: #e0e0e0;
+}
+
+.otp-input:focus:valid {
+    border-color: #4caf50;
+}
+
+
+.otp-screen{
+    background-color: #fff;
+    padding: 3rem;
+    border-radius: 6px;
+    .header-section h3{
+        border-bottom: solid 2px;
+    }
+    .otp-button-section{
+        button.btn-primary{
+            float: right;
+            min-width: 120px;
+        }
+    }
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

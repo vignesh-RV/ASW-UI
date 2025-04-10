@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { Form, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Form, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { LoggerService } from '../services/logger.service';
 import * as moment from 'moment';
 import { CommonService } from '../services/common.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -11,19 +12,45 @@ import { CommonService } from '../services/common.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent {
-  registrationForm: FormGroup;
+  registrationForm: FormGroup = new FormGroup({});
   submitted = false;
-  studentData:any = this.common.userData;
+  studentData:any = {};//this.common.userData;
   parentData:any = {};
-  constructor(private fb: FormBuilder, private common:CommonService, private api: ApiService, private logger: LoggerService) {
+  constructor(private fb: FormBuilder, private common:CommonService, private api: ApiService, private logger: LoggerService,
+    private activatedRoute:ActivatedRoute
+  ) {
+    this.activatedRoute.params.subscribe((params) => {
+      if(params['user_id']) {
+        if(params['user_id'] > 0){
+          this.getStudentData(params['user_id']);
+        }else{
+          this.studentData = {};
+          this.fillFormData();
+        }
+      }else{
+        this.studentData = this.common.userData;
+        this.fillFormData();
+      }
+    });
+  }
+
+  getStudentData(user_id:number) {
+    if(!user_id) return;
+    this.common.api.handleRequest('get', '/users/' + user_id).then((res) => {
+      this.studentData = res;
+      this.fillFormData();
+    });
+  }
+
+  fillFormData() {
     this.registrationForm = this.fb.group({
       user_id: [this.studentData.user_id || ''],
       user_name: [this.studentData.user_name || '', [Validators.required, Validators.maxLength(100)]],
-      gender: [this.studentData.gender || '', Validators.required],
-      height: [this.studentData.height || '', [Validators.min(0)]],
-      weight: [this.studentData.weight || '', [Validators.min(0)]],
+      gender: [this.studentData.gender || 'MALE', Validators.required],
+      height: [this.studentData.height || 0, [Validators.min(0)]],
+      weight: [this.studentData.weight || 0, [Validators.min(0)]],
       dob: [this.studentData.dob ? moment(this.studentData.dob).format('YYYY-MM-DD') : null, Validators.required],
-      nationality: [this.studentData.nationality || '', [Validators.required, Validators.maxLength(100)]],
+      nationality: [this.studentData.nationality || 'Indian', [Validators.required, Validators.maxLength(100)]],
       religion: [this.studentData.religion || '', Validators.maxLength(100)],
       caste: [this.studentData.caste || '', Validators.maxLength(100)],
       mother_tongue: [this.studentData.mother_tongue || '', Validators.maxLength(100)],
@@ -48,9 +75,11 @@ export class RegistrationComponent {
 
       parents: this.fb.array([])
     });
-
-    
-    this.getParentData(this.studentData.user_id);
+    if(this.studentData.user_id) {
+      this.getParentData(this.studentData.user_id);
+    }else{
+      this.parents.push(this.createParent());
+    }
   }
 
   getParentData(user_id: number) {
@@ -65,6 +94,10 @@ export class RegistrationComponent {
           this.addParent();
           this.parents.at(this.parents.controls.length-1).patchValue(this.parentData[key]);
         });
+
+        if(this.parents.length > 0) {
+          this.parents.push(this.createParent());
+        }
     });
   }
 
@@ -74,13 +107,13 @@ export class RegistrationComponent {
       parent_id: [''],
       parent_type: ['FATHER', [Validators.required]],
       full_name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-      phone_number: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      phone_number: [null, [Validators.required, Validators.pattern(/^\d{10}$/)]],
       occupation: [''],
       profile_image: [''],
       designation: [''],
       aadhaar_no: ['', [Validators.pattern(/^\d{12}$/)]], // Aadhaar number should be 12 digits
       email: ['', [Validators.email]],
-      annual_income: ['', [Validators.min(0)]]
+      annual_income: [0, [Validators.min(0)]]
     });
   }
 
@@ -131,19 +164,34 @@ export class RegistrationComponent {
             }
           });
           if(!allValid) return;
+      }else{
+        this.logger.error('Required at least one parent information');
+        let ele = document.querySelector(".parents-info ");
+        if(ele){
+          ele.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        return;
       }
 
       console.log('Form Submitted', this.registrationForm.value);
       let formValue = this.registrationForm.getRawValue();
       formValue.password = btoa(formValue.password);
       formValue.dob = moment(formValue.dob).format('YYYY-MM-DD');
-      this.api.handleRequest('put', '/users/'+formValue.user_id, null, formValue, 'application/json').then((res) => {
+      delete formValue.parents;
+      if(!formValue.user_id){
+        delete formValue.user_id;
+      }
+      this.api.handleRequest(formValue.user_id ? 'put' : 'post', '/users'+(formValue.user_id? `/${formValue.user_id}` : ''), null, formValue, 'application/json').then((res) => {
         let parentData = (this.parents.getRawValue()||[]).map((d:any) => {
-          d.student_user_id = formValue.user_id;
+          if(!d.parent_id){
+            delete d.parent_id;
+          }
+          d.student_user_id = res.user_id || formValue.user_id;
           return d;
         });
         Promise.all([
-          this.saveParents(parentData)
+          this.saveParents(parentData),
+          this.createRFID(res)
         ]).then(() => {
           this.common.fetchCurrentUser();
           this.getParentData(this.studentData.user_id);
@@ -157,10 +205,26 @@ export class RegistrationComponent {
     
   }
 
+  clearForm() {
+    this.registrationForm.reset();
+    this.submitted = false;
+  }
+
 
   saveParents(data:any){
     return new Promise((resolve, reject) => {
       this.api.handleRequest('post', '/users/parents', null, data, 'application/json').then((res) => {
+        resolve(res);
+      });
+    });
+  }
+
+  createRFID(data:any){
+    let reqData  = {
+      student_id: data.user_id
+    }
+    return new Promise((resolve, reject) => {
+      this.api.handleRequest('post', '/students/create_rfid', null, reqData, 'application/json').then((res) => {
         resolve(res);
       });
     });

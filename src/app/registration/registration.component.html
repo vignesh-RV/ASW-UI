@@ -1,38 +1,8 @@
-<div class="container-fluid bgcolor text-light p-3 " style="height: 70px;">
-    <div class="row">
-        <div class="col-6 d-flex align-items-center">
-            <img src="assets/Image/erasebg-transformed.png" (click)="goToHome()" alt="Sathyabama University Logo" class="logoimage1">
-
-        </div>
-        <div class="col-6 d-flex justify-content-end align-items-center">
-            <span class="material-symbols-outlined mx-1">
-                notifications
-            </span>
-            <span>
-                <img src="https://erp.sathyabama.ac.in/assets/images/Chancellor.jpg" alt="Sathyabama University Logo" class="logoimage2 mx-2">
-            </span>
-            <div class="dropdown">
-                <a class="btn border-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    {{studentData?.user_name}}
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Welcome!</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fa-solid fa-lock"></i> Change Password</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="#" (click)="logout()"><i
-                                class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<app-header></app-header>
 <div class="student-registration-container">
-    <h2>Student Information</h2>
+    <h2 class="student-registration-title">Student Information</h2>
 
-    <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+    <form [formGroup]="registrationForm" *ngIf="registrationForm?.get('user_name')" (ngSubmit)="submitForm()">
         <div class="form-group-containers">
         <!-- Personal Information -->
         <fieldset>
@@ -265,10 +235,23 @@
             <input id="student-profile-image-chooser" [hidden]="registrationForm.get('profile_image')?.value" type="file" (change)="onFileSelect($event, registrationForm)" class="form-control">
                 <div (click)="chooseFile('student-profile-image-chooser')" class="profile-image-container"><img [src]="registrationForm.get('profile_image')?.value" *ngIf="registrationForm.get('profile_image')?.value" class="profile-image"></div>
           </div>
+
+          <div class="form-group">
+            <label>Height (in cm):</label>
+            <input type="number" formControlName="height" class="form-control">
+            <span class="error" *ngIf="isInvalid('height')">Invalid value..</span>
+          </div>
+
+          <div class="form-group">
+            <label>Weight (in kg):</label>
+            <input type="number" formControlName="weight" class="form-control">
+            <span class="error" *ngIf="isInvalid('weight')">Invalid value..</span>
+          </div>
         </fieldset>
         </div>
         <div class="form-action-btn-container">
             <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-secondary" (click)="clearForm()">Clear</button>
         </div>
       </form>
        

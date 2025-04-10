@@ -1,1 +1,25 @@
 <router-outlet></router-outlet>
+
+<div *ngIf="showOTPSection" class="otp-screen-overlay">
+    <div class="otp-screen">
+        <div class="header-section">
+            <h3>Enter OTP</h3>
+            <p>We have sent an OTP to your registered mobile number.</p>
+            <p>Enter the OTP below to verify your identity.</p>
+        </div>
+        <div class="otp-input-section">
+            <div class="otp-container">
+                <input type="number" class="otp-input" maxlength="1" id="otp-1" (keydown)="helpToMove($event, 1)" (keypress)="validateInput($event, 1)" (input)="moveFocus($event, 1)">
+                <input type="number" class="otp-input" maxlength="1" id="otp-2" (keydown)="helpToMove($event, 2)" (keypress)="validateInput($event, 1)" (input)="moveFocus($event, 2)">
+                <input type="number" class="otp-input" maxlength="1" id="otp-3" (keydown)="helpToMove($event, 3)" (keypress)="validateInput($event, 1)" (input)="moveFocus($event, 3)">
+                <input type="number" class="otp-input" maxlength="1" id="otp-4" (keydown)="helpToMove($event, 4)" (keypress)="validateInput($event, 1)" (input)="moveFocus($event, 4)">
+                <input type="number" class="otp-input" maxlength="1" id="otp-5" (keydown)="helpToMove($event, 5)" (keypress)="validateInput($event, 1)" (input)="moveFocus($event, 5)">
+                <input type="number" class="otp-input" maxlength="1" id="otp-6" (keydown)="helpToMove($event, 6)" (keypress)="validateInput($event, 1)" (input)="moveFocus($event, 6)">
+            </div>
+        </div>
+        <div class="otp-button-section">
+            <button class="btn btn-outline-info" [disabled]="resendOTPTimer" (click)="resendOtp()">Resend OTP <span *ngIf="resendOTPTimer">(in {{otptime}}s)</span></button>
+            <button class="btn btn-primary" (click)="verifyOtp()">Verify OTP</button>
+        </div>
+    </div>
+</div>

@@ -1,35 +1,5 @@
 <div class="home-container-section">
-    <div class="container-fluid bgcolor text-light p-3 " style="height: 70px;">
-        <div class="row">
-            <div class="col-6 d-flex align-items-center">
-                <img src="assets/Image/erasebg-transformed.png" (click)="goToHome()" alt="Sathyabama University Logo" class="logoimage1">
-
-            </div>
-            <div class="col-6 d-flex justify-content-end align-items-center">
-                <span class="material-symbols-outlined mx-1">
-                    notifications
-                </span>
-                <span>
-                    <img src="https://erp.sathyabama.ac.in/assets/images/Chancellor.jpg" alt="Sathyabama University Logo" class="logoimage2 mx-2">
-                </span>
-                <div class="dropdown">
-                    <a class="btn border-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        {{studentData?.user_name}}
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Welcome!</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-lock"></i> Change Password</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#" (click)="logout()"><i
-                                    class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-header></app-header>
     <div class="container mt-4">
         <div class="row" >
             <div class="col-md-3 card" style="background-color: #c1e1eb; margin-bottom: 10px;">
@@ -41,7 +11,7 @@
                 <div class="card-body">
                     <div class="text-center" style="border-bottom: 3px solid #fff; padding-bottom: 10px;">
                         <h5 class="card-title">{{studentData?.user_name}}</h5>
-                        <h4 class="card-text">{{studentData.reg_no}}</h4>
+                        <h4 class="card-text"> {{studentData?.logged_in_as | lowercase}}</h4>
                         <p class="card-text">{{studentData.course}}</p>
                         <p class="card-text">{{studentData?.email}}</p>
                     </div>
@@ -502,12 +472,19 @@
                 <div class="card p-2 h-100">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="mb-3 center-head">Student Details</div>
+                            <div class="mb-3 center-head detail-title">{{studentData?.user_type | lowercase}} Details</div>
                             <div class="row">
                                 <div class="col-md-6 mb-3 box-hg clickable" (click)="currentView = 'info'">
                                     <div class="card bg-light h-100">
                                         <div class="card-body std-det  soft-primary">
                                             Information
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="studentData?.user_type == 'STAFF'" class="col-md-6 mb-3 box-hg clickable" (click)="goToStudentList()">
+                                    <div class="card bg-light h-100">
+                                        <div class="card-body std-det  soft-primary">
+                                            Student List
                                         </div>
                                     </div>
                                 </div>

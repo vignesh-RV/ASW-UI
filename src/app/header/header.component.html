@@ -1,0 +1,33 @@
+<div class="header-container">
+    <div class="container-fluid bgcolor text-light p-3 " style="height: 70px;">
+        <div class="row">
+            <div class="col-6 d-flex align-items-center">
+                <img src="assets/Image/erasebg-transformed.png" (click)="goToHome()" alt="Sathyabama University Logo" class="logoimage1">
+
+            </div>
+            <div class="col-6 d-flex justify-content-end align-items-center">
+                <span class="material-symbols-outlined mx-1">
+                    notifications
+                </span>
+                <span>
+                    <img src="https://erp.sathyabama.ac.in/assets/images/Chancellor.jpg" alt="Sathyabama University Logo" class="logoimage2 mx-2">
+                </span>
+                <div class="dropdown">
+                    <a class="btn border-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{studentData?.user_name}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Welcome!</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#" (click)="logout()"><i
+                                    class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

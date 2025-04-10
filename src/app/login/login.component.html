@@ -10,11 +10,8 @@
         <form action="#" method="post">
             <div class="input-group">
                 <select name="orderby"  [(ngModel)]="loginData.user_type"  class="orderby">
-                    <!-- <option value="staff">Staff</option> -->
-                    <option value="student" selected="selected">Student</option>
-                    <option value="parent">Parents</option>
+                    <option *ngFor="let type of loginTypes" [value]="type.id">{{type.name}}</option>
                 </select>
-                <input type="hidden" name="paged" value="1">
             </div>
             <div class="input-group">
                 <label for="username">Register Number</label>

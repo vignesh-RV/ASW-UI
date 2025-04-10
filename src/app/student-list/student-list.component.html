@@ -1,0 +1,39 @@
+<div class="student-list-container">
+    <app-header></app-header>
+    <div class="student-list-section">
+        <div class="student-list-header">
+            <h2>Student List</h2>
+            <button (click)="addStudent()" class="add-student-button btn btn-primary">Add Student</button>
+        </div>
+        <div class="student-list-content">
+            <table class="student-list-table">
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th>Batch</th>
+                        <th>Course</th>
+                        <th>Section Name</th>
+                        <th>Semester</th>
+                        <th>User Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of studentList">
+                        <td>{{ student.reg_no }}</td>
+                        <td>{{ student.user_name }}</td>
+                        <td>{{ student.batch }}</td>
+                        <td>{{ student.course }}</td>
+                        <td>{{ student.section_name }}</td>
+                        <td>{{ student.semester }}</td>
+                        <td>{{ student.user_type }}</td>
+                        <td>
+                            <button (click)="editStudent(student.user_id)" class="btn btn-outline-info edit-button">Edit</button>
+                            <button (click)="deleteStudent(student.user_id)" class="btn btn-outline-danger delete-button">Delete</button>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

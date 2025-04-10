@@ -140,11 +140,12 @@
     text-transform: capitalize;
 }
 
-
-h4.card-text{
-    font-weight: bold;
-    font-size: 1rem;
-    text-transform: capitalize;
-    padding: 5px 10px;
-    color: #d07777;
+.student-list-container{
+    background-color: #eee;
+    .student-list-section{
+        margin: 2% 12%;
+        background-color: #fff;
+        padding: 2%;
+        border-radius: 12px;
+    }
 }

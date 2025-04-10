@@ -23,6 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { StudentListComponent } from './student-list/student-list.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     AttendanceComponent,
     FeesComponent,
     RfidComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    StudentListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
