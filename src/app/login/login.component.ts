@@ -37,7 +37,9 @@ export class LoginComponent implements OnInit {
   }
 
   doLogin() {
-    this.api.handleRequest('post', '/users/login', null, this.loginData).then((res) => {
+    let reqData = JSON.parse(JSON.stringify(this.loginData));
+    reqData.password = btoa(reqData.password);
+    this.api.handleRequest('post', '/users/login', null, reqData).then((res) => {
       
       if(res.user_type != this.loginData.user_type || res.user_type == 'STAFF'){
         res.logged_in_as = this.loginData.user_type;

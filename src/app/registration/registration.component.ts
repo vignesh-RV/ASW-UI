@@ -16,6 +16,7 @@ export class RegistrationComponent {
   submitted = false;
   studentData:any = {};//this.common.userData;
   parentData:any = {};
+  rfidData:any = {};
   constructor(private fb: FormBuilder, private common:CommonService, private api: ApiService, private logger: LoggerService,
     private activatedRoute:ActivatedRoute
   ) {
@@ -23,6 +24,7 @@ export class RegistrationComponent {
       if(params['user_id']) {
         if(params['user_id'] > 0){
           this.getStudentData(params['user_id']);
+          this.getStudentRFIDData(params['user_id']);
         }else{
           this.studentData = {};
           this.fillFormData();
@@ -72,6 +74,8 @@ export class RegistrationComponent {
       course_duration_in_years: [2, [Validators.required, Validators.min(1)]],
       course_fees: [100000, [Validators.required, Validators.min(0)]],
       profile_image: [this.studentData.profile_image || ''],
+      face_id: [this.studentData.face_id || ''],
+      rfid_uuid: [this.studentData.rfid_uuid || ''],
 
       parents: this.fb.array([])
     });
@@ -95,9 +99,9 @@ export class RegistrationComponent {
           this.parents.at(this.parents.controls.length-1).patchValue(this.parentData[key]);
         });
 
-        if(this.parents.length > 0) {
-          this.parents.push(this.createParent());
-        }
+        // if(this.parents.length > 0) {
+        //   this.parents.push(this.createParent());
+        // }
     });
   }
 
@@ -191,11 +195,14 @@ export class RegistrationComponent {
         });
         Promise.all([
           this.saveParents(parentData),
-          this.createRFID(res)
+          this.saveRFID(res, formValue.user_id)
         ]).then(() => {
           this.common.fetchCurrentUser();
           this.getParentData(this.studentData.user_id);
           this.logger.success(!formValue.user_id ? 'Student registered successfully..' : 'Student updated successfully..');
+          this.clearForm();
+          this.getStudentData(formValue.user_id);
+          this.getStudentRFIDData(formValue.user_id);
         });
         
       })
@@ -219,7 +226,17 @@ export class RegistrationComponent {
     });
   }
 
-  createRFID(data:any){
+  saveRFID(data:any, isExistingUser:boolean = false){
+    if(isExistingUser){
+      let reqData  = this.rfidData;
+      reqData.uuid = this.registrationForm.get('rfid_uuid')?.value;
+      delete reqData.rfid;
+      return new Promise((resolve, reject) => {
+        this.api.handleRequest('put', '/students/update_rfid/'+ this.rfidData.rf_id, null, reqData, 'application/json').then((res) => {
+          resolve(res);
+        });
+      });
+    }
     let reqData  = {
       student_id: data.user_id
     }
@@ -272,5 +289,16 @@ export class RegistrationComponent {
 
   goToHome() {
     this.common.router.navigate(['home']);
-  }  
+  }
+
+  getStudentRFIDData(user_id:number) {
+    this.api.handleRequest('get', '/students/rfid/holder/'+ user_id).then((res:any) => {
+      this.rfidData = res;
+      setTimeout(() => {
+        this.registrationForm.patchValue({
+          rfid_uuid: res.uuid
+        });
+      }, 1000);
+    });
+  }
 }

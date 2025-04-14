@@ -33,3 +33,11 @@ h3{
 .section-name{
     text-transform: capitalize;
 }
+
+.refresh-icon{
+    position: absolute ;
+    right: 30%;
+    cursor: pointer;
+    color: blue;
+    font-weight: bold;
+}

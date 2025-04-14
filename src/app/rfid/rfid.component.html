@@ -3,7 +3,7 @@
         <div class="rfid_details">
             <div class="left-side">
                 <p class="black-hole"></p>
-                <img src="https://sathyabama-erp-s3.s3.ap-south-1.amazonaws.com/student/profile/190999-1700726909141-43310003.jpg" class="card-img-top rounded-circle  img-thumbnail"
+                <img [src]="userData?.profile_image || 'https://erp.sathyabama.ac.in/assets/images/father.png'" class="card-img-top rounded-circle  img-thumbnail"
                             alt="Student Image">
             </div>
             <div class="right-side">
@@ -13,7 +13,7 @@
                 <label>Max Limit: {{rfidData?.max_limit ? '₹ '+rfidData?.max_limit :'--'}}</label>
             </div>
         </div>
-        <label class="rfid_id"><span *ngIf="rfidData?.locked">🔒</span>{{rfidData?.uuid}}</label>
+        <label class="rfid_id"><span *ngIf="rfidData?.locked">🔒</span>{{getUUID(rfidData)}}</label>
     </div>
     <div *ngIf="userData?.logged_in_as == 'PARENT'" class="parent-view-mode card-controls">
         <button class="btn btn-primary" (click)="showPaymentModal()">Add Payment</button>
@@ -21,7 +21,7 @@
         <button class="btn btn-primary" (click)="lockTheCard()">{{this.rfidData.locked ? 'Unlock' : 'Lock'}} the Card</button>
     </div>
     <div class="rfid-transactions">
-        <h3>Transactions</h3>
+        <h3>Transactions <label class="refresh-icon" (click)="loadData()"><span>↻</span> refresh</label></h3>
         
         <div class="rfid-tables">
             <table class="dataTable">

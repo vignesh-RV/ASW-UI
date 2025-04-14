@@ -176,18 +176,18 @@ body {
   }
   
   /* Submit Button */
-  button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 20px;
-    background: #007bff;
-    border: none;
-    color: white;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
+//   button {
+//     width: 100%;
+//     padding: 12px;
+//     margin-top: 20px;
+//     background: #007bff;
+//     border: none;
+//     color: white;
+//     font-size: 18px;
+//     border-radius: 5px;
+//     cursor: pointer;
+//     transition: background 0.3s ease;
+//   }
   
   /* Button Hover */
   button:hover {
@@ -235,7 +235,7 @@ body {
     justify-content: center;
     position: sticky;
     bottom: 0;
-    .btn.btn-primary{
+    .btn{
         width: 250px;
         height: 40px;
         display: flex;

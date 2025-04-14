@@ -29,6 +29,10 @@ export class RfidComponent implements OnInit {
   constructor(private fb:FormBuilder,private api: ApiService, public common: CommonService) { }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData(){
     this.getStudentRFIDData();
     this.getUserPayments();
   }
@@ -122,5 +126,19 @@ export class RfidComponent implements OnInit {
         clearInterval(progressInterval);
       }
     }, 300)
+  }
+
+  getUUID(data:any){
+    if( data && data.uuid && data.uuid !=0  ){
+      let res = '';
+      for(let i=0; i<data.uuid.length; i++){
+        if(i % 4 == 0 && i != 0 && i != data.uuid.length-1){
+          res += '-';
+        }
+        res += data.uuid[i];
+      }
+      return res;
+    }
+    return 'Yet to assign id..';
   }
 }

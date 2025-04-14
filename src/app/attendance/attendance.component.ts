@@ -48,9 +48,11 @@ export class AttendanceComponent implements OnInit {
 
   getAttendance() {
     console.dir(this.selected);
+    let startDate = moment(this.selected.startDate).format('YYYY-MM-DD');
+    let endDate = moment(this.selected.endDate).format('YYYY-MM-DD');
     let reqData = {
-      startDate: new Date(this.selected.startDate).toISOString(),
-      endDate: new Date(this.selected.endDate).toISOString(),
+      startDate: new Date(startDate),
+      endDate: new Date(endDate),
       userId: this.common.userData.user_id
     }
     this.api.handleRequest('post', '/attendance/range', null, reqData).then((res) => {
@@ -64,7 +66,7 @@ export class AttendanceComponent implements OnInit {
     let uniDates = Array.from(new Set(data.map((d: any) => moment(d.created_date).format('YYYY-MM-DD'))));
     let res_data:any = [];
     uniDates.forEach((d: any) => {
-      let isPresent = data.some((x: any) => x.punch_type == 'IN' && x.created_date.includes(d));
+      let isPresent = data.some((x: any) => x.punch_type.toUpperCase() == 'IN' && x.created_date.includes(d));
       
       res_data.push({
         date: d,
@@ -80,7 +82,7 @@ export class AttendanceComponent implements OnInit {
     let uniDates = Array.from(new Set(data.map((d: any) => moment(d.created_date).format('YYYY-MM-DD'))));
     let res_data:any = [];
     uniDates.forEach((d: any) => {
-      let inTime = data.filter((x: any) => x.punch_type == 'IN' && x.created_date.includes(d));
+      let inTime = data.filter((x: any) => x.punch_type.toUpperCase() == 'IN' && x.created_date.includes(d));
       
       res_data.push({
         date: d,

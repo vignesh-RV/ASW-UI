@@ -1,4 +1,5 @@
 <div class="fee-container">
+    <label class="refresh-icon" (click)="loadData()"><span>↻</span> refresh</label>
     <ng-container [ngSwitch]="viewType">
         <div *ngSwitchCase="'TUITION'">
             <h3 class="section-name">Tuition Fees</h3>
@@ -21,7 +22,7 @@
                             <td>₹ {{data.course_fees}}</td>
                             <td>{{data.paid ? '₹ ' + data.paid: '--'}}</td>
                             <td class="{{data.course_fees <= data.paid ? 'FULLY_PAID' : 'PARTIALLY_PAID'}}">{{!data.paid ? '--' : data.course_fees <= data.paid ? 'FULLY PAID' : 'PARTIALLY PAID'}}</td>
-                            <td>{{data.last_transaction_date | date:'dd-MM-yyyy'}}</td>
+                            <td>{{data.last_transaction_date | date:'dd-MM-yyyy HH:mm:ss'}}</td>
                         </tr>
                         <tr *ngIf="tuitionFees.length == 0">
                             <td colspan="10">no data to disply..</td>
@@ -53,7 +54,7 @@
                             <td>₹ {{data.fees}}</td>
                             <td>{{data.paid ? '₹ ' + data.paid: '--'}}</td>
                             <td class="{{data.fees <= data.paid ? 'FULLY_PAID' : 'PARTIALLY_PAID'}}">{{data.paid == undefined ? '--' : data.fees <= data.paid ? 'FULLY PAID' : 'PARTIALLY PAID'}}</td>
-                            <td>{{data.last_transaction_date | date:'dd-MM-yyyy'}}</td>
+                            <td>{{data.last_transaction_date | date:'dd-MM-yyyy HH:mm:ss'}}</td>
                         </tr>
                         <tr *ngIf="tuitionFees.length == 0">
                             <td colspan="10">no data to disply..</td>
@@ -86,7 +87,7 @@
                             <td class="{{data.fees <= data.paid ? 'FULLY_PAID' : 'PARTIALLY_PAID'}}">
                                 {{data.paid == undefined ? '--' : data.fees <= data.paid ? 'FULLY PAID' : 'PARTIALLY PAID'}}
                             </td>
-                            <td>{{data.last_transaction_date | date:'dd-MM-yyyy'}}</td>
+                            <td>{{data.last_transaction_date | date:'dd-MM-yyyy HH:mm:ss'}}</td>
                         </tr>
                         <tr *ngIf="arrearFees.length == 0">
                             <td colspan="10">no data to disply..</td>
@@ -119,7 +120,7 @@
                             <td class="{{data.fees <= data.paid ? 'FULLY_PAID' : 'PARTIALLY_PAID'}}">
                                 {{data.paid == undefined ? '--' : data.fees <= data.paid ? 'FULLY PAID' : 'PARTIALLY PAID'}}
                             </td>
-                            <td>{{data.last_transaction_date | date:'dd-MM-yyyy'}}</td>
+                            <td>{{data.last_transaction_date | date:'dd-MM-yyyy HH:mm:ss'}}</td>
                         </tr>
                         <tr *ngIf="revaluationFees.length == 0">
                             <td colspan="10">no data to disply..</td>

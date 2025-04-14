@@ -190,12 +190,12 @@
                     <div class="col-md-6">
                         <div class="card text-center">
                             <div class="text-center p-3">
-                                <img src="{{ parentData.father.profile_image || 'https://erp.sathyabama.ac.in/assets/images/father.png'}}" class="card-img-top rounded-circle  img-thumbnail"
+                                <img src="{{ parentData?.father?.profile_image || 'https://erp.sathyabama.ac.in/assets/images/father.png'}}" class="card-img-top rounded-circle  img-thumbnail"
                                     alt="Father Image">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">{{parentData.father.full_name}}</h5>
-                                <p class="card-text">{{parentData.father.phone_number || '--'}}</p>
+                                <h5 class="card-title">{{parentData?.father?.full_name}}</h5>
+                                <p class="card-text">{{parentData?.father?.phone_number || '--'}}</p>
                                 <div class="row">
                                     <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
                                         <div class="col-6">
@@ -205,7 +205,7 @@
                                             <span class="">:</span>
                                         </div>
                                         <div class="col-5">
-                                            <span>{{parentData.father.occupation || '--'}}</span>
+                                            <span>{{parentData?.father?.occupation || '--'}}</span>
                                         </div>
                                     </div>
                                     <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
@@ -216,7 +216,7 @@
                                             <span class="">:</span>
                                         </div>
                                         <div class="col-5">
-                                            <span>{{parentData.father.designation || '--'}}</span>
+                                            <span>{{parentData?.father?.designation || '--'}}</span>
                                         </div>
                                     </div>
                                     <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
@@ -227,7 +227,7 @@
                                             <span class="">:</span>
                                         </div>
                                         <div class="col-5">
-                                            <span>{{parentData.father.annual_income || '--'}}</span>
+                                            <span>{{parentData?.father?.annual_income || '--'}}</span>
                                         </div>
                                     </div>
                                     <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
@@ -238,7 +238,7 @@
                                             <span class="">:</span>
                                         </div>
                                         <div class="col-5">
-                                            <span>{{parentData.father.aadhaar_no || '--'}}</span>
+                                            <span>{{parentData?.father?.aadhaar_no || '--'}}</span>
                                         </div>
                                     </div>
                                     <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
@@ -249,7 +249,7 @@
                                             <span class="">:</span>
                                         </div>
                                         <div class="col-5">
-                                            <span>{{parentData.father.email || '--'}}</span>
+                                            <span>{{parentData?.father?.email || '--'}}</span>
                                         </div>
                                     </div>
                                     <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
@@ -260,7 +260,7 @@
                                             <span class="">:</span>
                                         </div>
                                         <div class="col-5">
-                                            <span>{{parentData.father.phone_number || '--'}}</span>
+                                            <span>{{parentData?.father?.phone_number || '--'}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -271,11 +271,11 @@
                     <div class="col-md-6">
                         <div class="card text-center">
                             <div class="text-center p-3">
-                                <img src="{{ parentData.mother.profile_image || 'https://erp.sathyabama.ac.in/assets/images/mother.png'}}" class="card-img-top rounded-circle  img-thumbnail"
+                                <img src="{{ parentData?.mother?.profile_image || 'https://erp.sathyabama.ac.in/assets/images/mother.png'}}" class="card-img-top rounded-circle  img-thumbnail"
                                     alt="Mother Image">
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">{{parentData.mother.full_name || '--'}}</h5>
+                                <h5 class="card-title">{{parentData?.mother?.full_name || '--'}}</h5>
                                 <p class="card-text">-</p>
                                 <div class="row">
                                     <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
@@ -286,7 +286,7 @@
                                             <span class="">:</span>
                                         </div>
                                         <div class="col-5">
-                                            <span>{{parentData.mother.occupation || '--'}}</span>
+                                            <span>{{parentData?.mother?.occupation || '--'}}</span>
                                         </div>
                                     </div>
                                     <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
@@ -297,7 +297,7 @@
                                             <span class="">:</span>
                                         </div>
                                         <div class="col-5">
-                                            <span>{{parentData.mother.designation || '--'}}</span>
+                                            <span>{{parentData?.mother?.designation || '--'}}</span>
                                         </div>
                                     </div>
                                     <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
@@ -308,7 +308,7 @@
                                             <span class="">:</span>
                                         </div>
                                         <div class="col-5">
-                                            <span>{{parentData.mother.annual_income || '--'}}</span>
+                                            <span>{{parentData?.mother?.annual_income || '--'}}</span>
                                         </div>
                                     </div>
                                     <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
@@ -319,7 +319,7 @@
                                             <span class="">:</span>
                                         </div>
                                         <div class="col-5">
-                                            <span>{{parentData.mother.aadhaar_no || '--'}}</span>
+                                            <span>{{parentData?.mother?.aadhaar_no || '--'}}</span>
                                         </div>
                                     </div>
                                     <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
@@ -330,7 +330,7 @@
                                             <span class="">:</span>
                                         </div>
                                         <div class="col-5">
-                                            <span>{{parentData.mother.email || '--'}}</span>
+                                            <span>{{parentData?.mother?.email || '--'}}</span>
                                         </div>
                                     </div>
                                     <div class="row d-flex p-2" style="font-size: 16px; font-weight: 500">
@@ -341,7 +341,7 @@
                                             <span class="">:</span>
                                         </div>
                                         <div class="col-5">
-                                            <span>{{parentData.mother.phone_number || '--'}}</span>
+                                            <span>{{parentData?.mother?.phone_number || '--'}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -474,7 +474,7 @@
                         <div class="col-md-12">
                             <div class="mb-3 center-head detail-title">{{studentData?.user_type | lowercase}} Details</div>
                             <div class="row">
-                                <div class="col-md-6 mb-3 box-hg clickable" (click)="currentView = 'info'">
+                                <div class="col-md-6 mb-3 box-hg clickable" [class.active-card]="currentView == 'info'" (click)="currentView = 'info'">
                                     <div class="card bg-light h-100">
                                         <div class="card-body std-det  soft-primary">
                                             Information
@@ -488,49 +488,49 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div (click)="attendanceViewType= 'HOURLY';currentView = 'attendance'" class="col-md-6 mb-3 box-hg clickable">
+                                <div (click)="attendanceViewType= 'HOURLY';currentView = 'attendance'" [class.active-card]="attendanceViewType=='HOURLY'&&currentView =='attendance'" class="col-md-6 mb-3 box-hg clickable">
                                     <div class="card bg-light h-100">
                                         <div class="card-body std-det soft-purple">
                                             Hourly Attendance
                                         </div>
                                     </div>
                                 </div>
-                                <div (click)="attendanceViewType= 'DAILY';currentView = 'attendance'" class="col-md-6 mb-3 box-hg clickable" >
+                                <div (click)="attendanceViewType= 'DAILY';currentView = 'attendance'" [class.active-card]="attendanceViewType=='DAILY'&&currentView =='attendance'" class="col-md-6 mb-3 box-hg clickable" >
                                     <div class="card bg-light h-100">
                                         <div class="card-body std-det soft-danger">
                                             Daily Attendance
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-3 box-hg clickable" (click)="currentView = 'transaction'" >
+                                <div class="col-md-6 mb-3 box-hg clickable" [class.active-card]="currentView == 'transaction'" (click)="currentView = 'transaction'" >
                                     <div class="card bg-light h-100">
                                         <div class="card-body std-det soft-success">
                                             Transactions
                                         </div>
                                     </div>
                                 </div>
-                                <div (click)="feeViewType= 'TUITION';currentView = 'fees'" class="col-md-6 mb-3 box-hg clickable">
+                                <div (click)="feeViewType= 'TUITION';currentView = 'fees'" [class.active-card]="feeViewType=='TUITION'&&currentView == 'fees'" class="col-md-6 mb-3 box-hg clickable">
                                     <div class="card bg-light h-100">
                                         <div class="card-body std-det soft-info">
                                             Tuition Fees
                                         </div>
                                     </div>
                                 </div>
-                                <div (click)="feeViewType= 'PLACEMENT';currentView = 'fees'" class="col-md-6 mb-3 box-hg clickable">
+                                <div (click)="feeViewType= 'PLACEMENT';currentView = 'fees'" [class.active-card]="feeViewType== 'PLACEMENT'&&currentView == 'fees'" class="col-md-6 mb-3 box-hg clickable">
                                     <div class="card bg-light h-100">
                                         <div class="card-body std-det  soft-primary">
                                             Placement Fees
                                         </div>
                                     </div>
                                 </div>
-                                <div (click)="feeViewType= 'ARREAR';currentView = 'fees'" class="col-md-6 mb-3 box-hg clickable">
+                                <div (click)="feeViewType= 'ARREAR';currentView = 'fees'" [class.active-card]="feeViewType== 'ARREAR'&&currentView == 'fees'" class="col-md-6 mb-3 box-hg clickable">
                                     <div class="card bg-light h-100">
                                         <div class="card-body std-det soft-danger">
                                             Arrear Fees
                                         </div>
                                     </div>
                                 </div>
-                                <div  (click)="feeViewType= 'REVALUATION';currentView = 'fees'" class="col-md-6 mb-3 box-hg clickable">
+                                <div  (click)="feeViewType= 'REVALUATION';currentView = 'fees'" [class.active-card]="feeViewType== 'REVALUATION'&&currentView == 'fees'" class="col-md-6 mb-3 box-hg clickable">
                                     <div class="card bg-light h-100">
                                         <div class="card-body std-det soft-success">
                                             Revaluation Fees
