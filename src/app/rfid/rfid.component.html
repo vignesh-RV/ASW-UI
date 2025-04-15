@@ -31,16 +31,29 @@
                         <th>Paid For</th>
                         <th>Amount</th>
                         <th>Transaction Date</th>
+                        <th></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr *ngFor="let data of paymentsHistory; let i = index">
-                        <td>{{i+1}}</td>
-                        <td class="camel_case">{{data.transaction_type.toLowerCase()}}</td>
-                        <td>₹ {{data.amount}}</td>
-                        <td>{{data.created_date | date:'dd-MM-yyyy hh:mm:ss'}}</td>
-                    </tr>
-                    <tr *ngIf="paymentsHistory.length == 0">
+                <tbody class="custom-rows">
+                    <ng-container *ngFor="let data of paymentsHistory; let i = index">
+                        <tr [class.showing_details]="data.show_details" [class.even-row]="i%2==0">
+                            <td>{{i+1}}</td>
+                            <td class="camel_case">{{data.transaction_type.toLowerCase()}}</td>
+                            <td>₹ {{data.amount}}</td>
+                            <td>{{data.created_date | date:'dd-MM-yyyy hh:mm:ss'}}</td>
+                            <td class="details-label" (click)="data.show_details = !data.show_details">details</td>
+                        </tr>
+                        <tr *ngIf="data.show_details" [class.even-row]="i%2==0" class="payment-details-row">
+                            <td *ngIf="data.location" colspan="5">
+                                <p><span class="bold">Place:</span>{{data.location.city}},{{data.location.region}},{{data.location.postal}}</p>
+                                <p><span class="bold">Location:</span>{{data.location.loc}}</p>
+                                <p><span class="bold">IP:</span>{{data.location.ip}}, {{data.location.hostname}}</p>
+                            </td>
+                            <td *ngIf="!data.location"><p>no details found..</p></td>
+                        </tr>
+                    </ng-container>
+                    
+                    <tr *ngIf="paymentsHistory.length == 0" colspan="5">
                         <td colspan="10">no data to disply..</td>
                     </tr>
                 </tbody>

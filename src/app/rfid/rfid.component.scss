@@ -65,12 +65,17 @@ table{
         padding: 3px 10px;
         font-size: 14px;
     }
-    tbody tr{
-        background-color: #fff;
-    }
-    tbody tr:nth-child(odd){
+    tbody tr.even-row{
         background-color: #d5f1f6 !important;
     }
+    tbody tr{
+        background-color: #fff;
+        &:hover{
+            background-color: gainsboro !important;
+            transition: all 0.2s ease-in-out;
+        }
+    }
+    
     .FULLY_PAID{
         color: green;
         font-size: 12px;
@@ -164,4 +169,32 @@ h3{
         position: sticky;
         top: 0px;
     }
+}
+
+.payment-details-row{
+    p{
+        margin: 5px;
+        font-size: 12px;
+    }
+    .bold{
+        font-weight: bold;
+        margin-right: 10px;
+    }
+    td{
+        // // border: solid 2px #aaa;
+        // border-top: none;
+        // border-bottom-left-radius: 6px;
+        // border-bottom-right-radius: 6px;
+        // // background-color: #fff !important;
+    }
+}
+
+.showing_details{
+    border-bottom: solid 1px #aaa;
+}
+
+.details-label{
+    cursor: pointer;
+    color: #2424a0;
+    text-decoration: underline;
 }
